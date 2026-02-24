@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashish Singh | Technical Program Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #3b82f6;
+      --accent: #06b6d4;
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --border: #334155;
+      --gradient-1: linear-gradient(135deg, #2563eb, #06b6d4);
+      --gradient-2: linear-gradient(135deg, #7c3aed, #2563eb);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled { box-shadow: var(--shadow-lg); }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      background: rgba(37, 99, 235, 0.15);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37, 99, 235, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.08), transparent);
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-particle linear infinite;
+    }
+
+    @keyframes float-particle {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    .hero-content {
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary-light);
+      margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.6s ease 0.1s both;
+    }
+
+    .hero h1 .gradient-text {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(51, 65, 85, 0.5);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(51, 65, 85, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 60px;
+      animation: fadeInUp 0.6s ease 0.4s both;
+    }
+
+    .stat { text-align: center; }
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-1);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .about-info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .about-info-item .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .about-info-item .value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .highlight-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .highlight-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .highlight-icon.blue { background: rgba(37, 99, 235, 0.15); }
+    .highlight-icon.cyan { background: rgba(6, 182, 212, 0.15); }
+    .highlight-icon.purple { background: rgba(124, 58, 237, 0.15); }
+    .highlight-icon.green { background: rgba(34, 197, 94, 0.15); }
+
+    .highlight-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .highlight-item p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Experience Timeline */
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 68px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 16px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--primary);
+      z-index: 1;
+    }
+
+    .timeline-item:first-child .timeline-dot {
+      background: var(--primary);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-role {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .timeline-period {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 4px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .timeline-company {
+      font-size: 15px;
+      color: var(--primary-light);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .timeline-location {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+
+    .timeline-details {
+      list-style: none;
+    }
+
+    .timeline-details li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .timeline-details li::before {
+      content: 'â¹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .skill-category {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .skill-category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .skill-category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: rgba(37, 99, 235, 0.15);
+    }
+
+    .skill-category h3 {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--text);
+      border-color: var(--primary-light);
+    }
+
+    /* Education & Certifications */
+    .edu-cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(37, 99, 235, 0.4);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: rgba(37, 99, 235, 0.12);
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .edu-item, .cert-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    .edu-item:last-child, .cert-item:last-child { border-bottom: none; }
+
+    .edu-item h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .edu-item .school {
+      font-size: 14px;
+      color: var(--primary-light);
+      font-weight: 500;
+    }
+
+    .edu-item .year {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cert-badge {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: rgba(6, 182, 212, 0.12);
+    }
+
+    .cert-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .cert-item .issuer {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(124, 58, 237, 0.1);
+      color: #a78bfa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      text-align: center;
+      padding: 100px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      border-color: var(--primary);
+      background: rgba(37, 99, 235, 0.1);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-link .icon {
+      font-size: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        z-index: 999;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 20px; padding: 14px 32px; }
+      .hamburger { display: flex; }
+
+      .hero-stats { gap: 24px; }
+      .stat-number { font-size: 24px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .edu-cert-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+
+      .timeline::before { left: 16px; }
+      .timeline-item { padding-left: 52px; }
+      .timeline-dot { left: 8px; }
+
+      .timeline-header { flex-direction: column; }
+
+      .section { padding: 60px 16px; }
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--gradient-1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      border: none;
+      z-index: 900;
+    }
+
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-4px); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">AS.</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" onclick="closeNav()">About</a></li>
+        <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+        <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+        <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+        <li><a href="#education" onclick="closeNav()">Education</a></li>
+        <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Open to Opportunities
+      </div>
+      <h1>Hi, I'm <span class="gradient-text">Ashish Singh</span></h1>
+      <p class="hero-subtitle">
+        Technical Program Manager with 10+ years of experience driving large-scale technology programs, cross-functional collaboration, and strategic delivery across product and engineering teams.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          â Get in Touch
+        </a>
+        <a href="#experience" class="btn btn-secondary">
+          â View My Work
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="stat-label">Programs Delivered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">Stakeholders Managed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="section-header reveal">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Who I Am</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          I'm a results-driven Technical Program Manager with deep expertise in managing complex, cross-functional technology programs. I specialize in aligning engineering execution with business outcomes, driving Agile transformations, and delivering measurable impact.
+        </p>
+        <p>
+          With experience spanning companies like Walmart, Publicis Sapient, Cognizant, and HCL Technologies, I bring a unique blend of technical acumen and strategic leadership. I've managed portfolios worth $1.5M+ ARR, coordinated global teams, and led programs across e-commerce, digital platforms, and enterprise systems.
+        </p>
+        <div class="about-info-grid">
+          <div class="about-info-item">
+            <span class="label">Location</span>
+            <span class="value">Bengaluru, India</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">Email</span>
+            <span class="value">singhashish0411@gmail.com</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">Phone</span>
+            <span class="value">+91 9560830498</span>
+          </div>
+          <div class="about-info-item">
+            <span class="label">LinkedIn</span>
+            <span class="value">linkedin.com/in/ashishsingh04</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon blue">ð¯</div>
+            <div>
+              <h4>Strategic Program Delivery</h4>
+              <p>Led end-to-end delivery of large-scale programs, reducing cycle times by 25% and ensuring on-time execution.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon cyan">âï¸</div>
+            <div>
+              <h4>Agile & Process Excellence</h4>
+              <p>Certified SAFe Agilist & Scrum Master driving Agile transformations and process optimization across global teams.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon purple">ð</div>
+            <div>
+              <h4>Data-Driven Decisions</h4>
+              <p>Built dashboards and KPI frameworks improving visibility and stakeholder confidence by 40%.</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon green">ð¤</div>
+            <div>
+              <h4>Cross-Functional Leadership</h4>
+              <p>Managed 100+ stakeholders across engineering, product, QA, design, and business teams globally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="section-header reveal">
+      <div class="section-tag">Career Journey</div>
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="timeline">
+
+      <!-- Walmart -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Technical Program Manager</div>
+            <div class="timeline-company">Walmart Global Tech</div>
+            <div class="timeline-location">Bengaluru, India</div>
+          </div>
+          <span class="timeline-period">Nov 2021 â Present</span>
+        </div>
+        <ul class="timeline-details">
+          <li>Leading cross-functional programs across Seller Experience and Marketplace teams, coordinating 8+ engineering squads and 100+ stakeholders.</li>
+          <li>Driving Agile execution across multiple product streams using SAFe, managing PI planning, dependency tracking, and risk mitigation.</li>
+          <li>Built and maintained portfolio-level dashboards in Jira/Confluence, improving delivery visibility and stakeholder confidence by 40%.</li>
+          <li>Reduced program delivery cycle time by 25% through process optimization and streamlined cross-team coordination.</li>
+          <li>Facilitated quarterly business reviews (QBRs), synthesizing program health, velocity trends, and strategic roadmaps for senior leadership.</li>
+          <li>Managed a program portfolio contributing to $1.5M+ ARR through Marketplace Seller Growth initiatives.</li>
+          <li>Established governance frameworks for technical debt management, resulting in a 30% reduction in production incidents.</li>
+        </ul>
+      </div>
+
+      <!-- Publicis Sapient -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Senior Project Manager / Program Lead</div>
+            <div class="timeline-company">Publicis Sapient</div>
+            <div class="timeline-location">Bengaluru, India</div>
+          </div>
+          <span class="timeline-period">Jun 2019 â Oct 2021</span>
+        </div>
+        <ul class="timeline-details">
+          <li>Led digital transformation programs for a Fortune 500 retail client, managing end-to-end delivery across frontend, backend, and platform teams.</li>
+          <li>Directed cross-functional teams (engineering, design, QA, DevOps) of 40+ members, ensuring alignment across distributed teams.</li>
+          <li>Implemented Agile best practices (Scrum/Kanban), improving sprint velocity by 30% and predictability by 20%.</li>
+          <li>Created risk management frameworks and escalation processes, resolving 95% of blockers within SLA timelines.</li>
+          <li>Partnered with product owners to define and prioritize roadmaps, translating business goals into technical execution plans.</li>
+          <li>Managed vendor relationships and third-party integrations, ensuring contractual and technical compliance across delivery milestones.</li>
+        </ul>
+      </div>
+
+      <!-- Cognizant -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Project Manager / Scrum Master</div>
+            <div class="timeline-company">Cognizant Technology Solutions</div>
+            <div class="timeline-location">Bengaluru / Chennai, India</div>
+          </div>
+          <span class="timeline-period">Aug 2016 â May 2019</span>
+        </div>
+        <ul class="timeline-details">
+          <li>Managed Agile delivery for enterprise applications, coordinating 3â5 scrum teams across multiple product lines.</li>
+          <li>Drove sprint planning, backlog grooming, retrospectives, and release management for complex, distributed teams.</li>
+          <li>Tracked project KPIs (velocity, burn-down, defect leakage) and presented status reports to client stakeholders and senior leadership.</li>
+          <li>Led migration of legacy systems to cloud-based architectures (AWS), reducing infrastructure costs by 20%.</li>
+          <li>Collaborated with architects and engineering leads to define technical roadmaps and decompose epics into actionable user stories.</li>
+        </ul>
+      </div>
+
+      <!-- HCL -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-role">Senior Software Engineer / Tech Lead</div>
+            <div class="timeline-company">HCL Technologies</div>
+            <div class="timeline-location">Noida, India</div>
+          </div>
+          <span class="timeline-period">Jul 2013 â Jul 2016</span>
+        </div>
+        <ul class="timeline-details">
+          <li>Developed and maintained enterprise-grade Java/J2EE applications, contributing to full SDLC delivery across multiple projects.</li>
+          <li>Led a team of 8 developers, conducting code reviews, mentoring junior engineers, and driving engineering best practices.</li>
+          <li>Designed and implemented RESTful APIs and microservices for client-facing applications.</li>
+          <li>Collaborated with offshore/onshore teams, ensuring consistent delivery quality and timelines across geographies.</li>
+          <li>Championed CI/CD adoption, improving deployment frequency by 35% and reducing release-related defects by 25%.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section-header reveal">
+      <div class="section-tag">Expertise</div>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð</div>
+          <h3>Program & Project Management</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Program Delivery</span>
+          <span class="skill-tag">Portfolio Management</span>
+          <span class="skill-tag">Roadmap Planning</span>
+          <span class="skill-tag">Risk Management</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Vendor Management</span>
+          <span class="skill-tag">Budgeting & Forecasting</span>
+          <span class="skill-tag">Resource Planning</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð</div>
+          <h3>Agile & Frameworks</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">SAFe (Scaled Agile)</span>
+          <span class="skill-tag">Scrum</span>
+          <span class="skill-tag">Kanban</span>
+          <span class="skill-tag">PI Planning</span>
+          <span class="skill-tag">Sprint Planning</span>
+          <span class="skill-tag">Release Management</span>
+          <span class="skill-tag">Lean</span>
+          <span class="skill-tag">OKRs</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð ï¸</div>
+          <h3>Tools & Platforms</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Confluence</span>
+          <span class="skill-tag">MS Project</span>
+          <span class="skill-tag">Smartsheet</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Miro</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Slack</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð»</div>
+          <h3>Technical Domain</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microservices</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Cloud (AWS)</span>
+          <span class="skill-tag">CI/CD Pipelines</span>
+          <span class="skill-tag">Java / J2EE</span>
+          <span class="skill-tag">System Design</span>
+          <span class="skill-tag">DevOps</span>
+          <span class="skill-tag">Data Analytics</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð§ </div>
+          <h3>Leadership & Soft Skills</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Executive Communication</span>
+          <span class="skill-tag">Conflict Resolution</span>
+          <span class="skill-tag">Mentoring</span>
+          <span class="skill-tag">Strategic Thinking</span>
+          <span class="skill-tag">Change Management</span>
+          <span class="skill-tag">Decision Making</span>
+          <span class="skill-tag">Negotiation</span>
+          <span class="skill-tag">Team Building</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-category-header">
+          <div class="skill-category-icon">ð¢</div>
+          <h3>Domain Expertise</h3>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">E-Commerce</span>
+          <span class="skill-tag">Marketplace</span>
+          <span class="skill-tag">Retail Tech</span>
+          <span class="skill-tag">Digital Platforms</span>
+          <span class="skill-tag">Enterprise Applications</span>
+          <span class="skill-tag">SaaS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Projects -->
+  <section class="section" id="projects">
+    <div class="section-header reveal">
+      <div class="section-tag">Impact</div>
+      <h2 class="section-title">Key Programs & Projects</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <h3>Marketplace Seller Growth Platform</h3>
+        <p>Led the end-to-end program for Walmart's Seller Experience platform, managing 8+ engineering squads and contributing to $1.5M+ ARR through improved seller onboarding and growth tools.</p>
+        <div class="project-tags">
+          <span class="project-tag">Walmart</span>
+          <span class="project-tag">SAFe</span>
+          <span class="project-tag">Marketplace</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <h3>Digital Transformation â Retail</h3>
+        <p>Directed a large-scale digital transformation for a Fortune 500 retail client at Publicis Sapient, coordinating 40+ cross-functional members across frontend, backend, and platform teams.</p>
+        <div class="project-tags">
+          <span class="project-tag">Publicis Sapient</span>
+          <span class="project-tag">Retail</span>
+          <span class="project-tag">Agile</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <h3>Cloud Migration â Enterprise Systems</h3>
+        <p>Led the migration of legacy enterprise systems to AWS cloud architecture at Cognizant, reducing infrastructure costs by 20% and improving system scalability.</p>
+        <div class="project-tags">
+          <span class="project-tag">Cognizant</span>
+          <span class="project-tag">AWS</span>
+          <span class="project-tag">Migration</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <h3>CI/CD Pipeline Modernization</h3>
+        <p>Championed CI/CD adoption at HCL Technologies, improving deployment frequency by 35% and reducing release-related defects by 25% across multiple product lines.</p>
+        <div class="project-tags">
+          <span class="project-tag">HCL</span>
+          <span class="project-tag">DevOps</span>
+          <span class="project-tag">CI/CD</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="section" id="education">
+    <div class="section-header reveal">
+      <div class="section-tag">Background</div>
+      <h2 class="section-title">Education & Certifications</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="edu-cert-grid">
+      <div class="card reveal">
+        <div class="card-icon">ð</div>
+        <h3>Education</h3>
+        <div class="edu-item">
+          <h4>Master of Business Administration (MBA)</h4>
+          <div class="school">Symbiosis International University, Pune</div>
+          <div class="year">2016 â 2018 Â· Operations & IT Management</div>
+        </div>
+        <div class="edu-item">
+          <h4>Bachelor of Technology (B.Tech)</h4>
+          <div class="school">Dr. A.P.J. Abdul Kalam Technical University, Lucknow</div>
+          <div class="year">2009 â 2013 Â· Computer Science & Engineering</div>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="card-icon">ð</div>
+        <h3>Certifications</h3>
+        <div class="cert-item">
+          <div class="cert-badge">ð·</div>
+          <div>
+            <h4>SAFe 5 Agilist (SA)</h4>
+            <div class="issuer">Scaled Agile, Inc.</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">ð¶</div>
+          <div>
+            <h4>Certified ScrumMaster (CSM)</h4>
+            <div class="issuer">Scrum Alliance</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">ð¢</div>
+          <div>
+            <h4>PMP (Project Management Professional)</h4>
+            <div class="issuer">Project Management Institute (PMI)</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">âï¸</div>
+          <div>
+            <h4>AWS Certified Cloud Practitioner</h4>
+            <div class="issuer">Amazon Web Services</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-badge">ð</div>
+          <div>
+            <h4>ITIL Foundation</h4>
+            <div class="issuer">Axelos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="reveal">
+      <div class="section-tag">Let's Connect</div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="section-divider"></div>
+      <p style="color: var(--text-muted); margin-top: 20px; font-size: 16px; line-height: 1.7;">
+        I'm always open to discussing new opportunities, collaborations, or simply having a conversation about technology leadership and program management.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:singhashish0411@gmail.com" class="contact-link">
+          <span class="icon">âï¸</span>
+          Email Me
+        </a>
+        <a href="tel:+919560830498" class="contact-link">
+          <span class="icon">ð±</span>
+          +91 9560830498
+        </a>
+        <a href="https://linkedin.com/in/ashishsingh04" target="_blank" class="contact-link">
+          <span class="icon">ð¼</span>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Ashish Singh. Built with passion.</p>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">â</button>
+
+  <script>
+    // Particles
+    const particlesEl = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (8 + Math.random() * 12) + 's';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+      particlesEl.appendChild(p);
+    }
+
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    });
+
+    // Mobile nav
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+    function closeNav() {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Counter animation
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          let current = 0;
+          const increment = target / 40;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              el.textContent = target + '+';
+              clearInterval(timer);
+            } else {
+              el.textContent = Math.floor(current) + '+';
+            }
+          }, 40);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNumbers.forEach(el => counterObserver.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (window.scrollY >= top) current = section.getAttribute('id');
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+</body>
+</html>
