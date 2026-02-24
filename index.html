@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotional Banner</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #ffffff;
+      padding: 48px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: translateX(-30%) translateY(-30%); }
+      50% { transform: translateX(30%) translateY(30%); }
+    }
+
+    .promo-banner__content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .promo-banner__tag {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .promo-banner__heading {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .promo-banner__highlight {
+      color: #e94560;
+    }
+
+    .promo-banner__subtext {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .promo-banner__cta {
+      display: inline-block;
+      background: #e94560;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+    }
+
+    .promo-banner__cta:hover {
+      background: #d63851;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(233, 69, 96, 0.5);
+    }
+
+    .promo-banner__cta:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .promo-banner {
+        padding: 36px 16px;
+      }
+      .promo-banner__heading {
+        font-size: 24px;
+      }
+      .promo-banner__subtext {
+        font-size: 14px;
+      }
+      .promo-banner__cta {
+        padding: 12px 28px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="promo-banner">
+    <div class="promo-banner__content">
+      <span class="promo-banner__tag">Limited Time Offer</span>
+      <h2 class="promo-banner__heading">
+        Flat <span class="promo-banner__highlight">30% OFF</span> on All Collections
+      </h2>
+      <p class="promo-banner__subtext">
+        Refresh your wardrobe with our latest styles. Use code <strong>SAVE30</strong> at checkout. Hurry, offer ends soon!
+      </p>
+      <a href="#shop" class="promo-banner__cta">Shop Now</a>
+    </div>
+  </section>
+
+</body>
+</html>
