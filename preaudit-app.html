@@ -270,7 +270,10 @@ async function captureViaPageSpeed(url) {
   }
   if (!ssData) throw new Error('No screenshot in PageSpeed response');
 
-  // ssData is a data URI like "data:image/jpeg;base64,..."
+  // ssData is a data URI like "data:image/jpeg;base64,..." or "data:image/webp;base64,..."
+  // Extract actual media type from the data URI
+  const mtMatch = ssData.match(/^data:(image\/\w+);base64,/);
+  const detectedType = mtMatch ? mtMatch[1] : 'image/jpeg';
   const b64 = ssData.replace(/^data:image\/\w+;base64,/, '');
 
   // Also extract performance metrics
@@ -286,7 +289,7 @@ async function captureViaPageSpeed(url) {
     perf.si = audits['speed-index']?.displayValue;
   } catch(e) {}
 
-  return { b64, perf, mediaType: 'image/jpeg' };
+  return { b64, perf, mediaType: detectedType };
 }
 
 // ===================================================
@@ -342,7 +345,7 @@ async function startFullAudit() {
   addLog(`Screenshot method: Google PageSpeed Insights`, 'info');
   addLog('', '');
 
-  // ─── PHASE 1: CAPTURE SCREENSHOTS ───
+  // —— PHASE 1: CAPTURE SCREENSHOTS ——
   const pageList = Object.keys(state.urls);
   const totalPages = pageList.length;
   state.screenshotB64 = {};
@@ -391,7 +394,7 @@ async function startFullAudit() {
   addLog(`Screenshots captured for ${capturedPages.length} pages`, 'success');
   addLog('', '');
 
-  // ─── PHASE 2: AI EVALUATION ───
+  // —— PHASE 2: AI EVALUATION ——
   addLog('Starting AI parameter evaluation...', 'info');
 
   let totalBatches = 0;
